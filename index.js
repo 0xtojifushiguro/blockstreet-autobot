@@ -24,3 +24,19 @@ const userAgents = [
 function randomUA() {
     return userAgents[Math.floor(Math.random() * userAgents.length)];
 }
+function parseProxy(proxyLine) {
+    let proxy = proxyLine.trim();
+    if (!proxy) return null;
+    proxy = proxy.replace(/^https?:\/\//, '');
+    const specialMatch = proxy.match(/^([^:]+):(\d+)@(.+):(.+)$/);
+    if (specialMatch) {
+        const [, host, port, user, pass] = specialMatch;
+        return `http://${user}:${pass}@${host}:${port}`;
+    }
+    const parts = proxy.split(':');
+    if (parts.length === 4 && !isNaN(parts[1])) {
+        const [host, port, user, pass] = parts;
+        return `http://${user}:${pass}@${host}:${port}`;
+    }
+    return `http://${proxy}`;
+}
