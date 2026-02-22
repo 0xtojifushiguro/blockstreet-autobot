@@ -40,3 +40,8 @@ function parseProxy(proxyLine) {
     }
     return `http://${proxy}`;
 }
+function readAndParseProxies(filePath) {
+    if (!fs.existsSync(filePath)) return [];
+    const lines = fs.readFileSync(filePath, 'utf-8').split('\n');
+    return lines.map(line => parseProxy(line)).filter(Boolean);
+}
