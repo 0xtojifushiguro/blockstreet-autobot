@@ -88,3 +88,7 @@ async function solveTurnstile(apikey, sitekey, pageurl) {
         throw new Error(`Captcha solving process error: ${error.message}`);
     }
 }
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const question = (query) => new Promise(resolve => rl.question(query, resolve));
+const closeRl = () => rl.close();
