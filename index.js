@@ -45,3 +45,6 @@ function readAndParseProxies(filePath) {
     const lines = fs.readFileSync(filePath, 'utf-8').split('\n');
     return lines.map(line => parseProxy(line)).filter(Boolean);
 }
+const CUSTOM_SIGN_TEXT = `blockstreet.money wants you to sign in with your Ethereum account:
+0x4CBB1421DF1CF362DC618d887056802d8adB7BC0
+
