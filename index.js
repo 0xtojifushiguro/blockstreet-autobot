@@ -92,3 +92,5 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const question = (query) => new Promise(resolve => rl.question(query, resolve));
 const closeRl = () => rl.close();
+const getRandomAmount = (min, max) => Math.random() * (max - min) + min;
+const randomDelay = async () => await sleep(getRandomAmount(5000, 10000
