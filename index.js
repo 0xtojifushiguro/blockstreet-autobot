@@ -64,3 +64,9 @@ const SAMPLE_HEADERS = {
     token: process.env.EXAMPLE_TOKEN || '',
     origin: 'https://blockstreet.money'
 };
+async function solveTurnstile(apikey, sitekey, pageurl) {
+    logger.loading('Solving Cloudflare Turnstile captcha...');
+    if (!apikey) throw new Error('2Captcha API key is missing from your .env file.');
+    const submitUrl = 'http://2captcha.com/in.php';
+    const submitData = new URLSearchParams({ key: apikey, method: 'turnstile', sitekey, pageurl, json: 1 });
+    try {
