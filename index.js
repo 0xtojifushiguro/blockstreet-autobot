@@ -56,3 +56,11 @@ Chain ID: 1
 Nonce: Z9YFj5VY80yTwN3n
 Issued At: 2025-10-27T09:49:38.537Z
 Expiration Time: 2025-10-27T09:51:38.537Z`;
+const SAMPLE_HEADERS = {
+    timestamp: process.env.EXAMPLE_TIMESTAMP || '',
+    signatureHeader: process.env.EXAMPLE_SIGNATURE || ``,
+    fingerprint: process.env.EXAMPLE_FINGERPRINT || '',
+    abs: process.env.EXAMPLE_ABS || '',
+    token: process.env.EXAMPLE_TOKEN || '',
+    origin: 'https://blockstreet.money'
+};
