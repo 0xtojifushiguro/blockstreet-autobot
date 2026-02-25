@@ -94,3 +94,15 @@ const question = (query) => new Promise(resolve => rl.question(query, resolve));
 const closeRl = () => rl.close();
 const getRandomAmount = (min, max) => Math.random() * (max - min) + min;
 const randomDelay = async () => await sleep(getRandomAmount(5000, 10000
+const countdown = async (seconds) => {
+    let remaining = seconds;
+    while (remaining > 0) {
+        const h = Math.floor(remaining / 3600).toString().padStart(2, '0');
+        const m = Math.floor((remaining % 3600) / 60).toString().padStart(2, '0');
+        const s = Math.floor(remaining % 60).toString().padStart(2, '0');
+        process.stdout.write(`${colors.cyan}[⏳] Next run in: ${h}:${m}:${s} ...${colors.reset}\r`);
+        remaining--;
+        await sleep(1000);
+    }
+    console.log('\n');
+};
