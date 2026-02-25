@@ -48,3 +48,11 @@ function readAndParseProxies(filePath) {
 const CUSTOM_SIGN_TEXT = `blockstreet.money wants you to sign in with your Ethereum account:
 0x4CBB1421DF1CF362DC618d887056802d8adB7BC0
 
+Welcome to Block Street
+
+URI: https://blockstreet.money
+Version: 1
+Chain ID: 1
+Nonce: Z9YFj5VY80yTwN3n
+Issued At: 2025-10-27T09:49:38.537Z
+Expiration Time: 2025-10-27T09:51:38.537Z`;
