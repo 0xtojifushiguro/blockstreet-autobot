@@ -106,3 +106,4 @@ const countdown = async (seconds) => {
     }
     console.log('\n');
 };
+class BlockStreetAPI {
