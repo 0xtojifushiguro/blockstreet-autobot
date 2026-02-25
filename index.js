@@ -70,3 +70,21 @@ async function solveTurnstile(apikey, sitekey, pageurl) {
     const submitUrl = 'http://2captcha.com/in.php';
     const submitData = new URLSearchParams({ key: apikey, method: 'turnstile', sitekey, pageurl, json: 1 });
     try {
+        const submitRes = await axios.post(submitUrl, submitData);
+        if (submitRes.data.status !== 1) throw new Error(`2Captcha submit failed: ${submitRes.data.request}`);
+        const requestId = submitRes.data.request;
+        const resUrl = `http://2captcha.com/res.php?key=${apikey}&action=get&id=${requestId}&json=1`;
+        while (true) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            const resRes = await axios.get(resUrl);
+            if (resRes.data.status === 1) {
+                logger.success('Captcha solved successfully!');
+                return resRes.data.request;
+            }
+            if (resRes.data.request !== 'CAPCHA_NOT_READY') throw new Error(`2Captcha solve failed: ${resRes.data.request}`);
+            logger.loading('Captcha not ready, waiting...');
+        }
+    } catch (error) {
+        throw new Error(`Captcha solving process error: ${error.message}`);
+    }
+}
